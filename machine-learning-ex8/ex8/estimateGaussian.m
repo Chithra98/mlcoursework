@@ -13,7 +13,12 @@ function [mu sigma2] = estimateGaussian(X)
 % You should return these values correctly
 mu = zeros(n, 1);
 sigma2 = zeros(n, 1);
-
+for i = 1:columns(X)
+  x = X(:,i);
+  mu(i)= sum(x)/m;
+  sigma2(i) = sum((x-mu(i)).^2)/m;
+  
+end;
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the mean of the data and the variances
 %               In particular, mu(i) should contain the mean of
