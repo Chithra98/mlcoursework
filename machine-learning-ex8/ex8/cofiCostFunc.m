@@ -21,22 +21,6 @@ fprintf("%f",size(Theta_grad));
 J = (( X*Theta' - Y ) .^ 2) .* R;
 J = sum(sum(J))/2 + lambda.*(sum(sum(Theta .^2)))/2 + lambda.*(sum(sum(X .^2)))/2;
 y = X*Theta' - Y; 
-%for i = 1:num_movies
-%   for k = 1:columns(X_grad)
-%    X_grad(i,k)=0;
-%    for j = 1:num_users
-%      X_grad(i,k) += y(i,j)* Theta(j,k) * R(i,j) 
-%    end;
-%  end;
-%end;
-%for j = 1:num_users
-%  for k = 1:columns(Theta_grad)
-%    Theta_grad(i,k)=0;
-%    for i = 1:num_movies    
-%      Theta_grad(j,k) += y(i,j)* X(i,k) * R(i,j) 
-%    end;
-%  end;
-%end;
 X_grad = ((y .* R) * Theta) + lambda .* X;
 Theta_grad = ((y .* R)' * X) + lambda .* Theta;
 % ====================== YOUR CODE HERE ======================
